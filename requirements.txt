@@ -1,0 +1,6 @@
+opencv-python==4.8.1.78
+matplotlib==3.8.2
+numpy==1.26.2
+streamlit==1.28.2
+tensorflow==2.15.0
+onnxruntime==1.16.3
