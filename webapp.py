@@ -120,7 +120,7 @@ def detect_and_display_brain_tumor(img):
     tumor_img = display_tumor.getImage()
 
     # Check for tumor and return processed image
-    tumor_detected = "Brain Tumor Detected" if np.argmax(prediction) == 1 else "Brain Tumor Region"
+    tumor_detected = "Brain Tumor Detected" if np.argmax(prediction) == 1 else "Tumor/Fracture Region"
     return tumor_img, tumor_detected
     
 
@@ -205,17 +205,17 @@ if __name__ == "__main__":
         img_pp = preproc(img)
         out = model_inference(model_onnx_path, img_pp, device)
         out_img, out_txt = post_process(img, out, conf_thres)
-        st.image(out_img, caption="Bone Fracture Detection", channels="RGB")
+        st.image(out_img, caption="Detection Region", channels="RGB")
 
         # Brain tumor detection and display
         tumor_img, brain_tumor_result = detect_and_display_brain_tumor(img)
         st.write(brain_tumor_result)
-        st.image(tumor_img, caption="Brain Tumor Region", channels="RGB")
+        st.image(tumor_img, caption="Detected Abnormality Region", channels="RGB")
 
         # Download buttons
         col1, col2 = st.columns(2)
         col1.download_button(
-            label="Download Bone Fracture Prediction",
+            label="Download Prediction",
             data=cv2.imencode(".png", out_img[..., ::-1])[1].tobytes(),
             file_name=uploaded_file.name,
             mime="image/png"
