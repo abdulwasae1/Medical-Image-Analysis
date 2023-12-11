@@ -120,7 +120,7 @@ def detect_and_display_brain_tumor(img):
     tumor_img = display_tumor.getImage()
 
     # Check for tumor and return processed image
-    tumor_detected = "Brain Tumor Detected" if np.argmax(prediction) == 1 else "No Brain Tumor"
+    tumor_detected = "Brain Tumor Detected" if np.argmax(prediction) == 1 else "Brain Tumor Region"
     return tumor_img, tumor_detected
     
 
